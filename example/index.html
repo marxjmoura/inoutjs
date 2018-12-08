@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>InOut.js</title>
+</head>
+<body>
+  <input id="file" type="file" />
+  <script src="../dist/inout.min.js"></script>
+  <script>
+    document.getElementById('file').onchange = function (e) {
+      var file = e.target.files[0];
+
+      io(file).readLine(function (line, next) {
+        console.log(line === undefined ? 'EOF' : line);
+        next();
+      });
+    };
+  </script>
+</body>
+</html>
