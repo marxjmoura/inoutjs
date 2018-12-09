@@ -1,0 +1,5 @@
+**/*
+!dist/**/*
+!src/lib/**/*
+!src/inout.js
+!index.js

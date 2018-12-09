@@ -1,5 +1,5 @@
-import io from 'inout'
-import fixture from '../fixtures'
+import io from '@/inout'
+import fixture from '@/tests/fixtures'
 
 describe('readLine()', () => {
   let file
