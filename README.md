@@ -17,6 +17,12 @@ $ npm install inoutjs
 
 ## Usage
 
+Load InOut.js with an ES6 import:
+
+```js
+import io from 'inoutjs'
+```
+
 InOut.js read and write files by exposing the method `io()`.
 
 ```js
@@ -25,12 +31,6 @@ document.getElementById('file').onchange = function (e) {
 
   io(file); // InOut.js file wrapper
 };
-```
-
-If you are programming ES6:
-
-```js
-import io from 'inoutjs'
 ```
 
 ### File info
