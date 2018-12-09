@@ -1,0 +1,14 @@
+{
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.rulers": [140],
+  "editor.detectIndentation": false,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  }
+}
