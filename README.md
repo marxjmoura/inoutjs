@@ -1,5 +1,7 @@
 # InOut.js - I/O JavaScript library
 
+[![CircleCI](https://circleci.com/gh/marxjmoura/inoutjs.svg?style=shield)](https://circleci.com/gh/marxjmoura/inoutjs)
+[![codecov](https://codecov.io/gh/marxjmoura/inoutjs/branch/master/graph/badge.svg)](https://codecov.io/gh/marxjmoura/inoutjs)
 [![NPM version](https://img.shields.io/npm/v/inoutjs.svg)](https://npmjs.org/package/inoutjs)
 [![NPM downloads](https://img.shields.io/npm/dm/inoutjs.svg)](https://npmjs.org/package/inoutjs)
 [![devDependency Status](https://img.shields.io/david/dev/marxjmoura/inoutjs.svg)](https://david-dm.org/marxjmoura/inoutjs?type=dev)
