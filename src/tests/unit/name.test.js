@@ -8,6 +8,10 @@ describe('fullName()', () => {
     done()
   })
 
+  describe('when the parameter is not an instance of File', () => {
+    it('should return undefined', () => expect(io().name()).toBeUndefined())
+  })
+
   describe('when file has no extension', () => {
     const file = new File([blob], 'unknown')
     it('should return the name', () => expect(io(file).name()).toEqual('unknown'))

@@ -8,6 +8,10 @@ describe('ext()', () => {
     done()
   })
 
+  describe('when the parameter is not an instance of File', () => {
+    it('should return undefined', () => expect(io().ext()).toBeUndefined())
+  })
+
   describe('when file has no extension', () => {
     const file = new File([blob], 'unknown')
     it('should return undefined', () => expect(io(file).ext()).toBeUndefined())

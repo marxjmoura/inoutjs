@@ -4,6 +4,14 @@ import fixture from '@/tests/fixtures'
 describe('readLine()', () => {
   let file
 
+  describe('when the parameter is not an instance of File', () => {
+    const callback = () => {
+      throw 'Should not be called'
+    }
+
+    it('should not to try read the file', () => expect(() => io().readLine(callback)).not.toThrow())
+  })
+
   describe('when read an empty file', () => {
     const callback = () => {
       throw 'Should not be called'

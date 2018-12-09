@@ -3,24 +3,37 @@ import FileInfoWrapper from './file-info'
 
 class FileWrapper {
   constructor (file) {
+    this._file = file
     this._info = new FileInfoWrapper(file);
     this._reader = new FileReaderWrapper(file);
   }
 
   ext () {
-    return this._info.ext()
+    if (this._isFileInstance()) {
+      return this._info.ext()
+    }
   }
 
   fullName () {
-    return this._info.fullName()
+    if (this._isFileInstance()) {
+      return this._info.fullName()
+    }
   }
 
   name () {
-    return this._info.name()
+    if (this._isFileInstance()) {
+      return this._info.name()
+    }
   }
 
   readLine (callback) {
-    this._reader.readLine(callback)
+    if (this._isFileInstance()) {
+      this._reader.readLine(callback)
+    }
+  }
+
+  _isFileInstance () {
+    return this._file instanceof File
   }
 }
 
