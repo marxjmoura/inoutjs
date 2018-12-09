@@ -1,13 +1,25 @@
 import io from '@/inout'
-import fixture from '@/tests/fixtures'
 
 describe('fullName()', () => {
-  let file
+  let blob
 
   beforeAll(done => {
-    file = fixture('empty.txt')
+    blob = new Blob([], { type: 'text/plain' })
     done()
   })
 
-  it('should be empty.txt', () => expect(io(file).fullName()).toEqual('empty.txt'))
+  describe('when file has no extension', () => {
+    const file = new File([blob], 'unknown')
+    it('should return the name', () => expect(io(file).fullName()).toEqual('unknown'))
+  })
+
+  describe('when is a dot file extension', () => {
+    const file = new File([blob], '.dotfile')
+    it('should return the extension including the dot', () => expect(io(file).fullName()).toEqual('.dotfile'))
+  })
+
+  describe('when the file has a name and extension', () => {
+    const file = new File([blob], 'file.txt')
+    it('should return the name and extension', () => expect(io(file).fullName()).toEqual('file.txt'))
+  })
 })
