@@ -4,7 +4,9 @@ module.exports = {
   mode: process.env.NODE_ENV.match(/production/) ? 'production' : 'development',
   entry: path.resolve(__dirname, './src/inout.js'),
   resolve: {
-    modules: [path.resolve(__dirname, 'src')]
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
   },
   module: {
     rules: [

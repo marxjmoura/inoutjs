@@ -27,6 +27,12 @@ document.getElementById('file').onchange = function (e) {
 };
 ```
 
+If you are programming ES6:
+
+```js
+import io from 'inoutjs'
+```
+
 ### File info
 
 #### `fullName()` get file name including extension
