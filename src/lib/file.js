@@ -7,6 +7,10 @@ class FileWrapper {
     this._reader = new FileReaderWrapper(file);
   }
 
+  ext () {
+    return this._info.ext()
+  }
+
   fullName () {
     return this._info.fullName()
   }

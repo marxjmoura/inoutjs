@@ -1,8 +1,12 @@
-const fileExtension = /\.[^/.]+$/
+const fileExtension = /(?:\.([^.]+))?$/
 
 class FileInfoWrapper {
   constructor(file) {
     this._file = file
+  }
+
+  ext () {
+    return fileExtension.exec(this._file.name)[1]
   }
 
   fullName () {
