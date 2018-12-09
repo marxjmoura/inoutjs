@@ -9,7 +9,7 @@ describe('readLine()', () => {
       throw 'Should not be called'
     }
 
-    it('should not to try read the file', () => expect(() => io().readLine(callback)).not.toThrow())
+    it('nothing should happen', () => expect(() => io().readLine(callback)).not.toThrow())
   })
 
   describe('when read an empty file', () => {
@@ -18,7 +18,8 @@ describe('readLine()', () => {
     }
 
     beforeAll(done => {
-      file = fixture('empty.txt')
+      const blob = new Blob([], { type: 'text/plain' })
+      file = new File([blob], 'file.txt')
       done()
     })
 
@@ -31,11 +32,11 @@ describe('readLine()', () => {
       done()
     })
 
-    describe('when is not passed a function as callback to method next()', () => {
+    describe('when is not passed a function as callback', () => {
       it('nothing should happen', () => expect(() => io(file).readLine()).not.toThrow())
     })
 
-    describe('when next() called after read all file', () => {
+    describe('when next() called after read all file lines', () => {
       let throwedError = null
 
       beforeAll(done => {
