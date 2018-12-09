@@ -11,6 +11,10 @@ class FileWrapper {
     return this._info.fullName()
   }
 
+  name () {
+    return this._info.name()
+  }
+
   readLine (callback) {
     this._reader.readLine(callback)
   }
