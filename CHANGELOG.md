@@ -1,4 +1,4 @@
-## [v0.1.0-beta.2](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.0-beta.2) (UNRELEASED)
+## [v0.1.0-beta.2](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.0-beta.2) (2018-12-09)
 ### Features:
 - Get file full name: `fullName()`
 - Get file name: `name()`
