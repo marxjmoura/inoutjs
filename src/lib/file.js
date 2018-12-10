@@ -8,6 +8,12 @@ class FileWrapper {
     this._reader = new FileReaderWrapper(file);
   }
 
+  contentType () {
+    if (this._isFileInstance()) {
+      return this._info.contentType()
+    }
+  }
+
   ext () {
     if (this._isFileInstance()) {
       return this._info.ext()
