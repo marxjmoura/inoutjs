@@ -1,11 +1,13 @@
-import FileReaderWrapper from './file-reader'
 import FileInfoWrapper from './file-info'
+import FileReaderWrapper from './file-reader'
+import FileSizeWrapper from './file-size'
 
 class FileWrapper {
   constructor (file) {
     this._file = file
-    this._info = new FileInfoWrapper(file);
-    this._reader = new FileReaderWrapper(file);
+    this._info = new FileInfoWrapper(file)
+    this._reader = new FileReaderWrapper(file)
+    this._size = new FileSizeWrapper(file)
   }
 
   contentType () {
@@ -35,6 +37,12 @@ class FileWrapper {
   readLine (callback) {
     if (this._isFileInstance()) {
       this._reader.readLine(callback)
+    }
+  }
+
+  size (unit) {
+    if (this._isFileInstance()) {
+      return this._size.calculate(unit)
     }
   }
 
