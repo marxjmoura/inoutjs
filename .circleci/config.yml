@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:latest-browsers
     steps:
@@ -10,3 +10,24 @@ jobs:
       - run: curl -s https://codecov.io/bash > ./codecov
       - run: chmod +x ./codecov
       - run: ./codecov -f "./src/tests/coverage/cobertura.xml" -t $CODECOV_TOKEN
+  deploy:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run build
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run: npm publish
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master

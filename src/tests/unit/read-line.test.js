@@ -1,33 +1,34 @@
 import io from '@/inout'
-import fixture from '@/tests/fixtures'
+import empty_txt from '@/tests/fakes/empty.txt'
+import sample_txt from '@/tests/fakes/sample.txt'
 
 describe('readLine()', () => {
-  let file
+  describe('when the parameter is not an instance of File', () => {
+    const callback = () => {
+      throw 'Should not be called'
+    }
+
+    it('nothing should happen', () => expect(() => io().readLine(callback)).not.toThrow())
+  })
 
   describe('when read an empty file', () => {
     const callback = () => {
       throw 'Should not be called'
     }
 
-    beforeAll(done => {
-      file = fixture('empty.txt')
-      done()
-    })
+    const file = empty_txt
 
     it('should not fire callback', () => expect(() => io(file).readLine(callback)).not.toThrow())
   })
 
   describe('when read a non empty file', () => {
-    beforeAll(done => {
-      file = fixture('starwars.txt')
-      done()
-    })
+    const file = sample_txt
 
-    describe('when is not passed a function as callback to method next()', () => {
+    describe('when is not passed a function as callback', () => {
       it('nothing should happen', () => expect(() => io(file).readLine()).not.toThrow())
     })
 
-    describe('when next() called after read all file', () => {
+    describe('when next() called after read all file lines', () => {
       let throwedError = null
 
       beforeAll(done => {
@@ -61,7 +62,9 @@ describe('readLine()', () => {
 
       it('should read only the first line', () => expect(lines.length).toEqual(1))
 
-      it('should read the first line content', () => expect(lines[0]).toEqual('Great leaders inspire greatness in others.'))
+      it('should read the first line content', () => {
+        expect(lines[0]).toEqual('The following are the graphical (non-control) characters defined by')
+      })
     })
 
     describe('when next() is called', () => {
@@ -78,131 +81,114 @@ describe('readLine()', () => {
         })
       })
 
-      it('should read all lines', () => expect(lines.length).toEqual(121))
+      it('should read all lines', () => expect(lines.length).toEqual(104))
 
       it('should read line by line', () => {
         expect(lines).toEqual([
-          'Great leaders inspire greatness in others.',
-          'Belief is not a matter of choice, but of conviction.',
-          'Easy is the path to wisdom for those not blinded by ego.',
-          'A plan is only as good as those who see it through.',
-          'The best confidence builder is experience.',
-          'Trust in your friends, and they’ll have reason to trust in you.',
-          'You hold onto friends by keeping your heart a little softer than your head.',
-          'Heroes are made by the times.',
-          'Ignore your instincts at your peril.',
-          'Most powerful is he who controls his own power.',
-          'The winding path to peace is always a worthy one, regardless of how many turns it takes.',
-          'Fail with honor rather than succeed by fraud.',
-          'Greed and fear of loss are the roots that lead to the tree of evil.',
-          'When surrounded by war, one must eventually choose a side.',
-          'Arrogance diminishes wisdom.',
-          'Truth enlightens the mind, but won’t always bring happiness to your heart.',
-          'Fear is a disease; hope is its only cure.',
-          'A single chance is a galaxy of hope.',
-          'It is a rough road that leads to the heights of greatness.',
-          'The costs of war can never be truly accounted for.',
-          'Compromise is a virtue to be cultivated, not a weakness to be despised.',
-          'A secret shared is a trust formed.',
-          'A lesson learned is a lesson earned.',
-          'Overconfidence is the most dangerous form of carelessness.',
-          'The first step to correcting a mistake is patience.',
-          'A true heart should never be doubted.',
-          'Believe in yourself or no one else will.',
-          'No gift is more precious than trust.',
-          'Sometimes, accepting help is harder than offering it.',
-          'Attachment is not compassion.',
-          'For everything you gain, you lose something else.',
-          'It is the quest for honor that makes one honorable.',
-          'Easy isn’t always simple.',
-          'If you ignore the past, you jeopardize the future.',
-          'Fear not for the future, weep not for the past.',
-          'In war, truth is the first casualty.',
-          'Searching for the truth is easy. Accepting the truth is hard.',
-          'A wise leader knows when to follow.',
-          'Courage makes heroes, but trust builds friendships.',
-          'Choose what is right, not what is easy.',
-          'The most dangerous beast is the beast within.',
-          'Who my father was matters less than my memory of him.',
-          'Adversity is a friendship’s truest test.',
-          'Revenge is a confession of pain.',
-          'Brothers in arms are brothers for life.',
-          'Fighting a war tests a soldier’s skills, defending his home tests a soldier’s heart.',
-          'Where there’s a will, there’s a way.',
-          'A child stolen is a hope lost.',
-          'The challenge of hope is to overcome corruption.',
-          'Those who enforce the law must obey the law.',
-          'The future has many paths – choose wisely.',
-          'A failure in planning is a plan for failure.',
-          'Love comes in all shapes and sizes.',
-          'Fear is a great motivator.',
-          'Truth can strike down the spectre of fear.',
-          'The swiftest path to destruction is through vengeance.',
-          'Evil is not born, it is taught.',
-          'The path to evil may bring great power, but not loyalty.',
-          'Balance is found in the one who faces his guilt.',
-          'He who surrenders hope, surrenders life.',
-          'He who seeks to control fate shall never find peace.',
-          'Adaptation is the key to survival.',
-          'Anything that can go wrong will.',
-          'Without honor, victory is hollow.',
-          'Without humility, courage is a dangerous game.',
-          'A great student is what the teacher hopes to be.',
-          'When destiny calls, the chosen have no choice.',
-          'Only through fire is a strong sword forged.',
-          'Crowns are inherited, kingdoms are earned.',
-          'Who a person truly is cannot be seen with the eye.',
-          'Understanding is honoring the truth beneath the surface.',
-          'Who’s the more foolish, the fool or the fool who follows him?',
-          'The first step towards loyalty is trust.',
-          'The path of ignorance is guided by fear.',
-          'The wise man leads, the strong man follows.',
-          'Our actions define our legacy.',
-          'Where we are going always reflects where we came from.',
-          'Those who enslave others, inevitably become slaves themselves.',
-          'Great hope can come from small sacrifices.',
-          'Friendship shows us who we really are.',
-          'All warfare is based on deception.',
-          'Keep your friends close, but keep your enemies closer.',
-          'The strong survive, the noble overcome.',
-          'Trust is the greatest of gifts, but it must be earned.',
-          'One must let go of the past to hold on to the future.',
-          'Who we are never changes, who we think we are does.',
-          'A fallen enemy may rise again, but the reconciled one is truly vanquished.',
-          'The enemy of my enemy is my friend.',
-          'Strength of character can defeat strength in numbers.',
-          'Fear is a malleable weapon.',
-          'To seek something is to believe in its possibility.',
-          'Struggles often begin and end with the truth.',
-          'Disobedience is a demand for change.',
-          'He who faces himself, finds himself.',
-          'The young are often underestimated.',
-          'When we rescue others, we rescue ourselves.',
-          'Choose your enemies wisely, as  they may be your last hope.',
-          'Humility is the only defense against humiliation.',
-          'When all seems hopeless, a true hero gives hope.',
-          'A soldier’s most powerful weapon is courage.',
-          'You must trust in others or success is impossible.',
-          'One vision can have many interpretations.',
-          'Alliances can stall true intentions.',
-          'Morality separates heroes from villains.',
-          'Sometimes even the smallest doubt can shake the greatest belief.',
-          'Courage begins by trusting oneself.',
-          'Never become desperate enough to trust the untrustworthy.',
-          'Never give up hope, no matter how dark things seem.',
-          'The truth about yourself is always the hardest to accept.',
-          'The wise benefit from a second opinion.',
-          'When in doubt, go to the source.',
-          'The popular belief isn’t always the correct one.',
-          'To love, is to trust. To trust is to believe.',
-          'Jealousy is the path to chaos.',
-          'Deceit is the weapon of greed.',
-          'Without darkness there cannot be light.',
-          'Wisdom is born in fools as well as wise men.',
-          'What is lost is often found.',
-          'Madness can sometimes be the path to truth.',
-          'Death is just the beginning.',
-          'Facing all that you fear will free you from yourself.'
+          'The following are the graphical (non-control) characters defined by',
+          'ISO 8859-1 (1987).  Descriptions in words aren\'t all that helpful,',
+          'but they\'re the best we can do in text.  A graphics file illustrating',
+          'the character set should be available from the same archive as this',
+          'file.',
+          '',
+          'Hex Description                 Hex Description',
+          '',
+          '20  SPACE',
+          '21  EXCLAMATION MARK            A1  INVERTED EXCLAMATION MARK',
+          '22  QUOTATION MARK              A2  CENT SIGN',
+          '23  NUMBER SIGN                 A3  POUND SIGN',
+          '24  DOLLAR SIGN                 A4  CURRENCY SIGN',
+          '25  PERCENT SIGN                A5  YEN SIGN',
+          '26  AMPERSAND                   A6  BROKEN BAR',
+          '27  APOSTROPHE                  A7  SECTION SIGN',
+          '28  LEFT PARENTHESIS            A8  DIAERESIS',
+          '29  RIGHT PARENTHESIS           A9  COPYRIGHT SIGN',
+          '2A  ASTERISK                    AA  FEMININE ORDINAL INDICATOR',
+          '2B  PLUS SIGN                   AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK',
+          '2C  COMMA                       AC  NOT SIGN',
+          '2D  HYPHEN-MINUS                AD  SOFT HYPHEN',
+          '2E  FULL STOP                   AE  REGISTERED SIGN',
+          '2F  SOLIDUS                     AF  OVERLINE',
+          '30  DIGIT ZERO                  B0  DEGREE SIGN',
+          '31  DIGIT ONE                   B1  PLUS-MINUS SIGN',
+          '32  DIGIT TWO                   B2  SUPERSCRIPT TWO',
+          '33  DIGIT THREE                 B3  SUPERSCRIPT THREE',
+          '34  DIGIT FOUR                  B4  ACUTE ACCENT',
+          '35  DIGIT FIVE                  B5  MICRO SIGN',
+          '36  DIGIT SIX                   B6  PILCROW SIGN',
+          '37  DIGIT SEVEN                 B7  MIDDLE DOT',
+          '38  DIGIT EIGHT                 B8  CEDILLA',
+          '39  DIGIT NINE                  B9  SUPERSCRIPT ONE',
+          '3A  COLON                       BA  MASCULINE ORDINAL INDICATOR',
+          '3B  SEMICOLON                   BB  RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK',
+          '3C  LESS-THAN SIGN              BC  VULGAR FRACTION ONE QUARTER',
+          '3D  EQUALS SIGN                 BD  VULGAR FRACTION ONE HALF',
+          '3E  GREATER-THAN SIGN           BE  VULGAR FRACTION THREE QUARTERS',
+          '3F  QUESTION MARK               BF  INVERTED QUESTION MARK',
+          '40  COMMERCIAL AT               C0  CAPITAL LETTER A WITH GRAVE',
+          '41  CAPITAL LETTER A            C1  CAPITAL LETTER A WITH ACUTE',
+          '42  CAPITAL LETTER B            C2  CAPITAL LETTER A WITH CIRCUMFLEX',
+          '43  CAPITAL LETTER C            C3  CAPITAL LETTER A WITH TILDE',
+          '44  CAPITAL LETTER D            C4  CAPITAL LETTER A WITH DIAERESIS',
+          '45  CAPITAL LETTER E            C5  CAPITAL LETTER A WITH RING ABOVE',
+          '46  CAPITAL LETTER F            C6  CAPITAL LETTER AE',
+          '47  CAPITAL LETTER G            C7  CAPITAL LETTER C WITH CEDILLA',
+          '48  CAPITAL LETTER H            C8  CAPITAL LETTER E WITH GRAVE',
+          '49  CAPITAL LETTER I            C9  CAPITAL LETTER E WITH ACUTE',
+          '4A  CAPITAL LETTER J            CA  CAPITAL LETTER E WITH CIRCUMFLEX',
+          '4B  CAPITAL LETTER K            CB  CAPITAL LETTER E WITH DIAERESIS',
+          '4C  CAPITAL LETTER L            CC  CAPITAL LETTER I WITH GRAVE',
+          '4D  CAPITAL LETTER M            CD  CAPITAL LETTER I WITH ACUTE',
+          '4E  CAPITAL LETTER N            CE  CAPITAL LETTER I WITH CIRCUMFLEX',
+          '4F  CAPITAL LETTER O            CF  CAPITAL LETTER I WITH DIAERESIS',
+          '50  CAPITAL LETTER P            D0  CAPITAL LETTER ETH (Icelandic)',
+          '51  CAPITAL LETTER Q            D1  CAPITAL LETTER N WITH TILDE',
+          '52  CAPITAL LETTER R            D2  CAPITAL LETTER O WITH GRAVE',
+          '53  CAPITAL LETTER S            D3  CAPITAL LETTER O WITH ACUTE',
+          '54  CAPITAL LETTER T            D4  CAPITAL LETTER O WITH CIRCUMFLEX',
+          '55  CAPITAL LETTER U            D5  CAPITAL LETTER O WITH TILDE',
+          '56  CAPITAL LETTER V            D6  CAPITAL LETTER O WITH DIAERESIS',
+          '57  CAPITAL LETTER W            D7  MULTIPLICATION SIGN',
+          '58  CAPITAL LETTER X            D8  CAPITAL LETTER O WITH STROKE',
+          '59  CAPITAL LETTER Y            D9  CAPITAL LETTER U WITH GRAVE',
+          '5A  CAPITAL LETTER Z            DA  CAPITAL LETTER U WITH ACUTE',
+          '5B  LEFT SQUARE BRACKET         DB  CAPITAL LETTER U WITH CIRCUMFLEX',
+          '5C  REVERSE SOLIDUS             DC  CAPITAL LETTER U WITH DIAERESIS',
+          '5D  RIGHT SQUARE BRACKET        DD  CAPITAL LETTER Y WITH ACUTE',
+          '5E  CIRCUMFLEX ACCENT           DE  CAPITAL LETTER THORN (Icelandic)',
+          '5F  LOW LINE                    DF  SMALL LETTER SHARP S (German)',
+          '60  GRAVE ACCENT                E0  SMALL LETTER A WITH GRAVE',
+          '61  SMALL LETTER A              E1  SMALL LETTER A WITH ACUTE',
+          '62  SMALL LETTER B              E2  SMALL LETTER A WITH CIRCUMFLEX',
+          '63  SMALL LETTER C              E3  SMALL LETTER A WITH TILDE',
+          '64  SMALL LETTER D              E4  SMALL LETTER A WITH DIAERESIS',
+          '65  SMALL LETTER E              E5  SMALL LETTER A WITH RING ABOVE',
+          '66  SMALL LETTER F              E6  SMALL LETTER AE',
+          '67  SMALL LETTER G              E7  SMALL LETTER C WITH CEDILLA',
+          '68  SMALL LETTER H              E8  SMALL LETTER E WITH GRAVE',
+          '69  SMALL LETTER I              E9  SMALL LETTER E WITH ACUTE',
+          '6A  SMALL LETTER J              EA  SMALL LETTER E WITH CIRCUMFLEX',
+          '6B  SMALL LETTER K              EB  SMALL LETTER E WITH DIAERESIS',
+          '6C  SMALL LETTER L              EC  SMALL LETTER I WITH GRAVE',
+          '6D  SMALL LETTER M              ED  SMALL LETTER I WITH ACUTE',
+          '6E  SMALL LETTER N              EE  SMALL LETTER I WITH CIRCUMFLEX',
+          '6F  SMALL LETTER O              EF  SMALL LETTER I WITH DIAERESIS',
+          '70  SMALL LETTER P              F0  SMALL LETTER ETH (Icelandic)',
+          '71  SMALL LETTER Q              F1  SMALL LETTER N WITH TILDE',
+          '72  SMALL LETTER R              F2  SMALL LETTER O WITH GRAVE',
+          '73  SMALL LETTER S              F3  SMALL LETTER O WITH ACUTE',
+          '74  SMALL LETTER T              F4  SMALL LETTER O WITH CIRCUMFLEX',
+          '75  SMALL LETTER U              F5  SMALL LETTER O WITH TILDE',
+          '76  SMALL LETTER V              F6  SMALL LETTER O WITH DIAERESIS',
+          '77  SMALL LETTER W              F7  DIVISION SIGN',
+          '78  SMALL LETTER X              F8  SMALL LETTER O WITH STROKE',
+          '79  SMALL LETTER Y              F9  SMALL LETTER U WITH GRAVE',
+          '7A  SMALL LETTER Z              FA  SMALL LETTER U WITH ACUTE',
+          '7B  LEFT CURLY BRACKET          FB  SMALL LETTER U WITH CIRCUMFLEX',
+          '7C  VERTICAL LINE               FC  SMALL LETTER U WITH DIAERESIS',
+          '7D  RIGHT CURLY BRACKET         FD  SMALL LETTER Y WITH ACUTE',
+          '7E  TILDE                       FE  SMALL LETTER THORN (Icelandic)',
+          '                                FF  SMALL LETTER Y WITH DIAERESIS'
         ])
       })
     })
