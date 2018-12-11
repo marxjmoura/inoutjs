@@ -17,7 +17,8 @@ jobs:
       - checkout
       - run: npm i
       - run: npm run build
-      - run: npm publish -auth $NPM_TOKEN
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run: npm publish
 workflows:
   version: 2
   test_and_deploy:
@@ -27,5 +28,6 @@ workflows:
           requires:
             - test
           filters:
-            tags:
-              only: /^v.*/
+            branches:
+              only:
+                - master
