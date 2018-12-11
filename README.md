@@ -35,31 +35,31 @@ document.getElementById('file').onchange = function (e) {
 
 ### File info
 
-#### `fullName()` get file name including extension
+`fullName()` get file name including extension
 
 ```js
 var fullName = io(file).fullName(); // E.g. foo.txt
 ```
 
-#### `name()` get file name without extension
+`name()` get file name without extension
 
 ```js
 var name = io(file).name(); // E.g. foo
 ```
 
-#### `ext()` get file extention
+`ext()` get file extention
 
 ```js
 var extension = io(file).ext(); // E.g. txt
 ```
 
-#### `contentType()` get file content type
+`contentType()` get file content type
 
 ```js
 var contentType = io(file).contentType(); // E.g. text/plain
 ```
 
-#### `size()` get file size
+`size()` get file size
 
 ```js
 var size  = io(file).size('MB'); // Options: B, KB, MB, GB
@@ -67,7 +67,7 @@ var size  = io(file).size('MB'); // Options: B, KB, MB, GB
 
 ### Read file
 
-#### `readChunk()` read chunk
+`readChunk()` read chunk
 
 ```js
 io(file).readChunk(function (chunk, next) {
@@ -76,7 +76,7 @@ io(file).readChunk(function (chunk, next) {
 });
 ```
 
-#### `readLine()` read line by line
+`readLine()` read line by line
 
 ```js
 io(file).readLine(function (line, next) {
@@ -87,19 +87,19 @@ io(file).readLine(function (line, next) {
 
 ### Write to file
 
-#### `write()` write content to file
+`write()` write content to file
 
 ```js
 io({ fullName: 'foo.txt', contenType: 'text/plain' }).write('full content');
 ```
 
-#### `writeLine()` write line to file
+`writeLine()` write line to file
 
 ```js
 io({ fullName: 'foo.txt', contenType: 'text/plain' }).writeLine('content');
 ```
 
-#### `save()` download the file
+`save()` download the file
 
 ```js
 io({ fullName: 'foo.txt', contenType: 'text/plain' }).save();
@@ -107,25 +107,25 @@ io({ fullName: 'foo.txt', contenType: 'text/plain' }).save();
 
 ### Utility functions
 
-#### `greaterThan()` file size is greather than option
+`greaterThan()` file size is greather than option
 
 ```js
 io(file).greaterThan(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-#### `greaterThan()` file size is greather or equal to option
+`greaterThan()` file size is greather or equal to option
 
 ```js
 io(file).greaterOrEqual(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-#### `greaterThan()` file size is lower than option
+`greaterThan()` file size is lower than option
 
 ```js
 io(file).lowerThan(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-#### `greaterThan()` file size is lower or equal to option
+`greaterThan()` file size is lower or equal to option
 
 ```js
 io(file).lowerOrEqual(100, 'KB'); // Options: B, KB, MB, GB
