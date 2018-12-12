@@ -1,4 +1,4 @@
-const newline = /(\r\n|\n|\r)/
+const newline = /(\r?\n)/
 
 class FileReaderWrapper {
   constructor(file) {
@@ -45,19 +45,20 @@ class FileReaderWrapper {
   }
 
   _nextChunk (chunk, callback) {
-    callback(chunk, () => {
+    const next = () => {
       if (this._eof()) {
         this._stop(callback)
       } else {
         this._seek()
       }
-    })
+    }
+
+    callback(chunk, next)
   }
 
   _nextLine (chunk, callback) {
-    while (chunk.offset < chunk.content.length && !newline.test(chunk.partialLine)) {
+    for (; chunk.offset < chunk.content.length && !newline.test(chunk.partialLine); chunk.offset++) {
       chunk.partialLine += chunk.content[chunk.offset]
-      chunk.offset++
     }
 
     const eoc = chunk.offset >= chunk.content.length
@@ -65,15 +66,20 @@ class FileReaderWrapper {
 
     if (newline.test(chunk.partialLine)) {
       chunk.partialLine = ''
+    } else if (eoc && !this._eof()) {
+      this._seek()
+      return
     }
 
-    if (eoc && this._eof()) {
-      this._stop(callback)
-    } else if (eoc) {
-      this._seek()
-    } else {
-      callback(line, () => this._nextLine(chunk, callback))
+    const next = () => {
+      if (eoc && this._eof()) {
+        this._stop(callback)
+      } else {
+        this._nextLine(chunk, callback)
+      }
     }
+
+    callback(line, next)
   }
 
   _seek () {
