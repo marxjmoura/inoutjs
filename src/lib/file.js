@@ -10,12 +10,6 @@ class FileWrapper {
     this._size = new FileSizeWrapper(file)
   }
 
-  contentType () {
-    if (this._isFileInstance()) {
-      return this._info.contentType()
-    }
-  }
-
   ext () {
     if (this._isFileInstance()) {
       return this._info.ext()
@@ -77,6 +71,12 @@ class FileWrapper {
   size (unit) {
     if (this._isFileInstance()) {
       return this._size.calculate(unit)
+    }
+  }
+
+  type () {
+    if (this._isFileInstance()) {
+      return this._info.type()
     }
   }
 
