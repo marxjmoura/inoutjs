@@ -1,5 +1,5 @@
 const content = [
-  'Great leaders inspire greatness in others.\n',
+  'Great leaders inspire greatness in others.',
   'Belief is not a matter of choice, but of conviction.',
   'Easy is the path to wisdom for those not blinded by ego.',
   'A plan is only as good as those who see it through.',
@@ -119,8 +119,9 @@ const content = [
   'What is lost is often found.',
   'Madness can sometimes be the path to truth.',
   'Death is just the beginning.',
-  'Facing all that you fear will free you from yourself.'
-]
+  'Facing all that you fear will free you from yourself.',
+  ''
+].join('\n')
 
 const blob = new Blob([content], { type: 'text/plain' })
 const file = new File([blob], 'starwars.txt', { type: blob.type, lastModified: new Date() })

@@ -1,4 +1,8 @@
-const content = [
+import io from '@/inout'
+import empty_txt from '@/tests/fakes/empty.txt'
+import sample_txt from '@/tests/fakes/sample.txt'
+
+const firstChunk = [
   'The following are the graphical (non-control) characters defined by',
   'ISO 8859-1 (1987). Descriptions in words aren\'t all that helpful,',
   'but they\'re the best we can do in text. A graphics file illustrating',
@@ -71,7 +75,11 @@ const content = [
   '5D  RIGHT SQUARE BRACKET        DD  CAPITAL LETTER Y WITH ACUTE',
   '5E  CIRCUMFLEX ACCENT           DE  CAPITAL LETTER THORN (Icelandic)',
   '5F  LOW LINE                    DF  SMALL LETTER SHARP S (German)',
-  '60  GRAVE ACCENT                E0  SMALL LETTER A WITH GRAVE',
+  '60  '
+].join('\n')
+
+const secondChunk = [
+  'GRAVE ACCENT                E0  SMALL LETTER A WITH GRAVE',
   '61  SMALL LETTER A              E1  SMALL LETTER A WITH ACUTE',
   '62  SMALL LETTER B              E2  SMALL LETTER A WITH CIRCUMFLEX',
   '63  SMALL LETTER C              E3  SMALL LETTER A WITH TILDE',
@@ -105,7 +113,95 @@ const content = [
   '                                FF  SMALL LETTER Y WITH DIAERESIS'
 ].join('\n')
 
-const blob = new Blob([content], { type: 'text/plain' })
-const file = new File([blob], 'sample.txt', { type: blob.type, lastModified: new Date() })
+describe('readChunk()', () => {
+  describe('when the parameter is not an instance of File', () => {
+    const callback = () => {
+      throw 'Should not be called'
+    }
 
-export default file
+    it('nothing should happen', () => expect(() => io().readChunk(callback)).not.toThrow())
+  })
+
+  describe('when read an empty file', () => {
+    const callback = () => {
+      throw 'Should not be called'
+    }
+
+    const file = empty_txt
+
+    it('should not fire callback', () => expect(() => io(file).readChunk(callback)).not.toThrow())
+  })
+
+  describe('when read a non empty file', () => {
+    const file = sample_txt
+
+    describe('when is not passed a function as callback', () => {
+      it('nothing should happen', () => expect(() => io(file).readChunk()).not.toThrow())
+    })
+
+    describe('when next() called after read all chunks', () => {
+      let throwedError = null
+
+      beforeAll(done => {
+        io(file).readChunk((chunk, next) => {
+          next()
+
+          if (chunk === undefined) {
+            try {
+              next()
+            } catch (error) {
+              throwedError = error
+            }
+
+            done()
+          }
+        })
+      })
+
+      it('nothing should happen', () => expect(throwedError).toBeNull())
+    })
+
+    describe('when next() is not called', () => {
+      const chunks = []
+
+      beforeAll(done => {
+        io(file).readChunk((chunk, next) => {
+          chunks.push(chunk)
+          done()
+        })
+      })
+
+      it('should read only the first chunk', () => expect(chunks.length).toEqual(1))
+
+      it('should read the first chunk content', () => expect(chunks[0]).toEqual(firstChunk))
+    })
+
+    describe('when next() is called', () => {
+      const chunks = []
+
+      beforeAll(done => {
+        io(file).readChunk((chunk, next) => {
+          if (chunk === undefined) {
+            done()
+          } else {
+            chunks.push(chunk)
+            next()
+          }
+        })
+      })
+
+      it('should read all chunks', () => expect(chunks.length).toEqual(2))
+
+      it('should read all file content', () => {
+        expect(chunks.join('')).toEqual(firstChunk.concat(secondChunk))
+      })
+
+      it('should read all lines', () => {
+        const actualLines = chunks.join('').split(/\n/g).length
+        const expectedLines = firstChunk.concat(secondChunk).split(/\n/g).length
+
+        expect(actualLines).toEqual(expectedLines)
+      })
+    })
+  })
+})

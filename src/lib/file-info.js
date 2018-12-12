@@ -5,10 +5,6 @@ class FileInfoWrapper {
     this._file = file
   }
 
-  contentType () {
-    return this._file.type
-  }
-
   ext () {
     return fileExtension.exec(this._file.name)[1]
   }
@@ -19,6 +15,10 @@ class FileInfoWrapper {
 
   name () {
     return this._file.name.replace(fileExtension, '')
+  }
+
+  type () {
+    return this._file.type
   }
 }
 

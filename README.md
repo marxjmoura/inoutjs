@@ -53,10 +53,10 @@ var name = io(file).name(); // E.g. foo
 var extension = io(file).ext(); // E.g. txt
 ```
 
-`contentType()` get file content type
+`type()` get file content type
 
 ```js
-var contentType = io(file).contentType(); // E.g. text/plain
+var type = io(file).type(); // E.g. text/plain
 ```
 
 `size()` get file size
@@ -90,19 +90,19 @@ io(file).readLine(function (line, next) {
 `write()` write content to file
 
 ```js
-io({ fullName: 'foo.txt', contenType: 'text/plain' }).write('full content');
+io({ fullName: 'foo.txt', type: 'text/plain' }).write('full content');
 ```
 
 `writeLine()` write line to file
 
 ```js
-io({ fullName: 'foo.txt', contenType: 'text/plain' }).writeLine('content');
+io({ fullName: 'foo.txt', type: 'text/plain' }).writeLine('content');
 ```
 
 `save()` download the file
 
 ```js
-io({ fullName: 'foo.txt', contenType: 'text/plain' }).save();
+io({ fullName: 'foo.txt', type: 'text/plain' }).save();
 ```
 
 ### Utility functions
@@ -113,19 +113,19 @@ io({ fullName: 'foo.txt', contenType: 'text/plain' }).save();
 io(file).greaterThan(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-`greaterThan()` file size is greather or equal to option
+`greaterOrEqual()` file size is greather or equal to option
 
 ```js
 io(file).greaterOrEqual(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-`greaterThan()` file size is lower than option
+`lowerThan()` file size is lower than option
 
 ```js
 io(file).lowerThan(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-`greaterThan()` file size is lower or equal to option
+`lowerOrEqual()` file size is lower or equal to option
 
 ```js
 io(file).lowerOrEqual(100, 'KB'); // Options: B, KB, MB, GB

@@ -10,7 +10,7 @@ module.exports = function (config) {
     preprocessors: {
       'src/**/*.js': ['webpack']
     },
-    webpack: require('./webpack.config'),
+    webpack: require('./.webpack.config'),
     reporters: ['progress', 'coverage'],
     coverageReporter: {
       dir: 'src/tests/coverage',

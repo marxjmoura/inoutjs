@@ -10,12 +10,6 @@ class FileWrapper {
     this._size = new FileSizeWrapper(file)
   }
 
-  contentType () {
-    if (this._isFileInstance()) {
-      return this._info.contentType()
-    }
-  }
-
   ext () {
     if (this._isFileInstance()) {
       return this._info.ext()
@@ -28,9 +22,43 @@ class FileWrapper {
     }
   }
 
+  greaterThan (maxSize, unit) {
+    if (!this._isFileInstance()) return false
+    if (typeof maxSize !== 'number') return false
+
+    return this._size.greaterThan(maxSize, unit)
+  }
+
+  greaterOrEqual (maxSize, unit) {
+    if (!this._isFileInstance()) return false
+    if (typeof maxSize !== 'number') return false
+
+    return this._size.greaterOrEqual(maxSize, unit)
+  }
+
+  lowerThan (maxSize, unit) {
+    if (!this._isFileInstance()) return false
+    if (typeof maxSize !== 'number') return false
+
+    return this._size.lowerThan(maxSize, unit)
+  }
+
+  lowerOrEqual (maxSize, unit) {
+    if (!this._isFileInstance()) return false
+    if (typeof maxSize !== 'number') return false
+
+    return this._size.lowerOrEqual(maxSize, unit)
+  }
+
   name () {
     if (this._isFileInstance()) {
       return this._info.name()
+    }
+  }
+
+  readChunk (callback) {
+    if (this._isFileInstance()) {
+      this._reader.readChunk(callback)
     }
   }
 
@@ -43,6 +71,12 @@ class FileWrapper {
   size (unit) {
     if (this._isFileInstance()) {
       return this._size.calculate(unit)
+    }
+  }
+
+  type () {
+    if (this._isFileInstance()) {
+      return this._info.type()
     }
   }
 

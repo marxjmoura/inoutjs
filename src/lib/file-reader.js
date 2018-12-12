@@ -1,4 +1,4 @@
-const newline = /(\r\n|\n|\r)/
+const newline = /(\r?\n)/
 
 class FileReaderWrapper {
   constructor(file) {
@@ -9,6 +9,19 @@ class FileReaderWrapper {
     this._decoder = new TextDecoder('utf-8')
   }
 
+  readChunk (callback) {
+    if (typeof callback !== 'function') return
+
+    this._fileReader.onload = () => {
+      const buffer = new Uint8Array(this._fileReader.result)
+      const chunk = this._decoder.decode(buffer, { stream: true })
+
+      this._nextChunk(chunk, callback)
+    }
+
+    this._seek()
+  }
+
   readLine (callback) {
     if (typeof callback !== 'function') return
 
@@ -16,10 +29,10 @@ class FileReaderWrapper {
 
     this._fileReader.onload = () => {
       const buffer = new Uint8Array(this._fileReader.result)
-      const decoded = this._decoder.decode(buffer, { stream: true })
+      const content = this._decoder.decode(buffer, { stream: true })
 
       chunk.offset = 0
-      chunk.content = decoded.split(newline)
+      chunk.content = content.split(newline)
 
       this._nextLine(chunk, callback)
     }
@@ -29,6 +42,18 @@ class FileReaderWrapper {
 
   _eof () {
     return this._offset === this._file.size
+  }
+
+  _nextChunk (chunk, callback) {
+    const next = () => {
+      if (this._eof()) {
+        this._stop(callback)
+      } else {
+        this._seek()
+      }
+    }
+
+    callback(chunk, next)
   }
 
   _nextLine (chunk, callback) {
@@ -41,15 +66,20 @@ class FileReaderWrapper {
 
     if (newline.test(chunk.partialLine)) {
       chunk.partialLine = ''
+    } else if (eoc && !this._eof()) {
+      this._seek()
+      return
     }
 
-    if (eoc && this._eof()) {
-      callback(undefined, () => {})
-    } else if (eoc) {
-      this._seek()
-    } else {
-      callback(line, () => this._nextLine(chunk, callback))
+    const next = () => {
+      if (eoc && this._eof()) {
+        this._stop(callback)
+      } else {
+        this._nextLine(chunk, callback)
+      }
     }
+
+    callback(line, next)
   }
 
   _seek () {
@@ -66,6 +96,10 @@ class FileReaderWrapper {
 
     this._fileReader.readAsArrayBuffer(slice)
     this._offset = end
+  }
+
+  _stop (callback) {
+    callback(undefined, () => {})
   }
 }
 

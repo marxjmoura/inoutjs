@@ -1,7 +1,7 @@
 {
   "name": "inoutjs",
   "title": "InOut.js",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "homepage": "https://github.com/marxjmoura/inoutjs",
   "author": "Marx JMoura",
   "license": "MIT",
@@ -13,8 +13,8 @@
     "url": "git://github.com/marxjmoura/inoutjs.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --output=./dist/inout.min.js",
-    "test": "cross-env NODE_ENV=test karma start karma.config.js"
+    "build": "cross-env NODE_ENV=production webpack --config .webpack.config.js --output=./dist/inout.min.js",
+    "test": "cross-env NODE_ENV=test karma start .karma.config.js"
   },
   "dependencies": {},
   "devDependencies": {
