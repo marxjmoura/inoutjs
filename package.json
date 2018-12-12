@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --output=./dist/inout.min.js",
-    "test": "cross-env NODE_ENV=test karma start karma.config.js"
+    "test": "cross-env NODE_ENV=test karma start .karma.config.js"
   },
   "dependencies": {},
   "devDependencies": {
