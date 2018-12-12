@@ -11,6 +11,12 @@ class FileSizeWrapper {
 
     return Number(this._file.size) / Math.pow(1024, exponentOf[unit])
   }
+
+  greaterThan (maxSize, unit) {
+    const fileSize = this.calculate(unit)
+
+    return fileSize > maxSize
+  }
 }
 
 export default FileSizeWrapper

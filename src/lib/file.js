@@ -28,6 +28,13 @@ class FileWrapper {
     }
   }
 
+  greaterThan (maxSize, unit) {
+    if (!this._isFileInstance()) return false
+    if (typeof maxSize !== 'number') return false
+
+    return this._size.greaterThan(maxSize, unit)
+  }
+
   name () {
     if (this._isFileInstance()) {
       return this._info.name()
