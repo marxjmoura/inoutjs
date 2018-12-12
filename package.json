@@ -13,7 +13,7 @@
     "url": "git://github.com/marxjmoura/inoutjs.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --output=./dist/inout.min.js",
+    "build": "cross-env NODE_ENV=production webpack --config .webpack.config.js --output=./dist/inout.min.js",
     "test": "cross-env NODE_ENV=test karma start .karma.config.js"
   },
   "dependencies": {},

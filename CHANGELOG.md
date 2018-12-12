@@ -1,7 +1,6 @@
-## [v0.1.0-beta.3](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.0-beta.3) (UNRELEASED)
+## [v0.1.0-beta.3](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.0-beta.3) (2018-12-12)
 ### Breaking changes:
 - Rename `contentType()` to `type()`
-
 ### Features:
 - `greaterThan()`
 - `greaterOrEqual()`
