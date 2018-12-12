@@ -29,6 +29,12 @@ class FileSizeWrapper {
 
     return fileSize < minSize
   }
+
+  lowerOrEqual (minSize, unit) {
+    const fileSize = this.calculate(unit)
+
+    return fileSize <= minSize
+  }
 }
 
 export default FileSizeWrapper
