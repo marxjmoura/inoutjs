@@ -42,6 +42,13 @@ class FileWrapper {
     return this._size.greaterOrEqual(maxSize, unit)
   }
 
+  lowerThan (maxSize, unit) {
+    if (!this._isFileInstance()) return false
+    if (typeof maxSize !== 'number') return false
+
+    return this._size.lowerThan(maxSize, unit)
+  }
+
   name () {
     if (this._isFileInstance()) {
       return this._info.name()
