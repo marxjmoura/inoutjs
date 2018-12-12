@@ -113,19 +113,19 @@ io({ fullName: 'foo.txt', contenType: 'text/plain' }).save();
 io(file).greaterThan(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-`greaterThan()` file size is greather or equal to option
+`greaterOrEqual()` file size is greather or equal to option
 
 ```js
 io(file).greaterOrEqual(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-`greaterThan()` file size is lower than option
+`lowerThan()` file size is lower than option
 
 ```js
 io(file).lowerThan(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-`greaterThan()` file size is lower or equal to option
+`lowerOrEqual()` file size is lower or equal to option
 
 ```js
 io(file).lowerOrEqual(100, 'KB'); // Options: B, KB, MB, GB
