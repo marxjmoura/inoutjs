@@ -9,6 +9,19 @@ class FileReaderWrapper {
     this._decoder = new TextDecoder('utf-8')
   }
 
+  readChunk (callback) {
+    if (typeof callback !== 'function') return
+
+    this._fileReader.onload = () => {
+      const buffer = new Uint8Array(this._fileReader.result)
+      const chunk = this._decoder.decode(buffer, { stream: true })
+
+      this._nextChunk(chunk, callback)
+    }
+
+    this._seek()
+  }
+
   readLine (callback) {
     if (typeof callback !== 'function') return
 
@@ -16,10 +29,10 @@ class FileReaderWrapper {
 
     this._fileReader.onload = () => {
       const buffer = new Uint8Array(this._fileReader.result)
-      const decoded = this._decoder.decode(buffer, { stream: true })
+      const content = this._decoder.decode(buffer, { stream: true })
 
       chunk.offset = 0
-      chunk.content = decoded.split(newline)
+      chunk.content = content.split(newline)
 
       this._nextLine(chunk, callback)
     }
@@ -31,9 +44,20 @@ class FileReaderWrapper {
     return this._offset === this._file.size
   }
 
+  _nextChunk (chunk, callback) {
+    callback(chunk, () => {
+      if (this._eof()) {
+        this._stop(callback)
+      } else {
+        this._seek()
+      }
+    })
+  }
+
   _nextLine (chunk, callback) {
-    for (; chunk.offset < chunk.content.length && !newline.test(chunk.partialLine); chunk.offset++) {
+    while (chunk.offset < chunk.content.length && !newline.test(chunk.partialLine)) {
       chunk.partialLine += chunk.content[chunk.offset]
+      chunk.offset++
     }
 
     const eoc = chunk.offset >= chunk.content.length
@@ -44,7 +68,7 @@ class FileReaderWrapper {
     }
 
     if (eoc && this._eof()) {
-      callback(undefined, () => {})
+      this._stop(callback)
     } else if (eoc) {
       this._seek()
     } else {
@@ -66,6 +90,10 @@ class FileReaderWrapper {
 
     this._fileReader.readAsArrayBuffer(slice)
     this._offset = end
+  }
+
+  _stop (callback) {
+    callback(undefined, () => {})
   }
 }
 

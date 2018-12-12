@@ -28,7 +28,7 @@ describe('readLine()', () => {
       it('nothing should happen', () => expect(() => io(file).readLine()).not.toThrow())
     })
 
-    describe('when next() called after read all file lines', () => {
+    describe('when next() called after read all lines', () => {
       let throwedError = null
 
       beforeAll(done => {
@@ -86,8 +86,8 @@ describe('readLine()', () => {
       it('should read line by line', () => {
         expect(lines).toEqual([
           'The following are the graphical (non-control) characters defined by',
-          'ISO 8859-1 (1987).  Descriptions in words aren\'t all that helpful,',
-          'but they\'re the best we can do in text.  A graphics file illustrating',
+          `ISO 8859-1 (1987).  Descriptions in words aren't all that helpful,`,
+          `but they're the best we can do in text.  A graphics file illustrating`,
           'the character set should be available from the same archive as this',
           'file.',
           '',

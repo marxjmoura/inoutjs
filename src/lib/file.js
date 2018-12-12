@@ -62,6 +62,12 @@ class FileWrapper {
     }
   }
 
+  readChunk (callback) {
+    if (this._isFileInstance()) {
+      this._reader.readChunk(callback)
+    }
+  }
+
   readLine (callback) {
     if (this._isFileInstance()) {
       this._reader.readLine(callback)
