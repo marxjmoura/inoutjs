@@ -1,4 +1,4 @@
-## [v0.1.0](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.0) (UNRELEASE)
+## [v0.1.0](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.0) (2018-12-14)
 ### Features:
 - `write()`
 - `writeLine()`
