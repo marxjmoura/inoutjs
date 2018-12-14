@@ -23,14 +23,34 @@ Load InOut.js with an ES6 import:
 import io from 'inoutjs'
 ```
 
-InOut.js read and write files by exposing the method `io()`.
+InOut.js read and write files by exposing the method `io()`:
 
 ```js
 document.getElementById('file').onchange = function (e) {
   var file = e.target.files[0];
-
-  io(file); // InOut.js file wrapper
+  var fileWrapper = io(file); // InOut.js file wrapper
 };
+```
+
+Creating an empty file:
+
+```js
+var fileWrapper = io();
+```
+
+Creating from blob:
+
+```js
+var blob = new Blob(['content'], { type: 'text/plain' });
+var fileWrapper = io(blob);
+```
+
+Creating a file manually:
+
+```js
+var blob = new Blob(['content'], { type: 'text/plain' });
+var file = new File([blob], 'foo.txt', { type: blob.type, lastModified: new Date() })
+var fileWrapper = io(file);
 ```
 
 ### File info
@@ -90,19 +110,29 @@ io(file).readLine(function (line, next) {
 `write()` write content to file
 
 ```js
-io({ fullName: 'foo.txt', type: 'text/plain' }).write('full content');
+io().write('full content');
+```
+
+`write()` write multiline to file
+
+```js
+io().write(['line1', 'line2']);
 ```
 
 `writeLine()` write line to file
 
 ```js
-io({ fullName: 'foo.txt', type: 'text/plain' }).writeLine('content');
+io().writeLine('content');
 ```
+
+### Save file
 
 `save()` download the file
 
 ```js
-io({ fullName: 'foo.txt', type: 'text/plain' }).save();
+io(file).save();
+io(file).save('foo.xml'); // Override the file name
+io(file).save('foo.xml', 'application/xml'); // Override the file name and type
 ```
 
 ### Utility functions
