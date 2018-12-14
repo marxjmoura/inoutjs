@@ -49,6 +49,10 @@ class FileWrapper {
     this._reader.readLine(callback)
   }
 
+  save (name, type) {
+    this._save.save(name, type)
+  }
+
   size (unit) {
     return this._size.calculate(unit)
   }
