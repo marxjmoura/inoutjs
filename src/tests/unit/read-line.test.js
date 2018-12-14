@@ -3,7 +3,7 @@ import empty_txt from '@/tests/fakes/empty.txt'
 import sample_txt from '@/tests/fakes/sample.txt'
 
 describe('readLine()', () => {
-  describe('when the parameter is not an instance of File', () => {
+  describe('when io() has no parameter', () => {
     const callback = () => {
       throw 'Should not be called'
     }

@@ -3,10 +3,7 @@ module.exports = function (config) {
     singleRun: true,
     browsers: ['ChromeHeadless'],
     frameworks: ['jasmine'],
-    files: [
-      { pattern: 'src/tests/**/*.test.js', included: true },
-      { pattern: 'src/tests/fixtures/*.txt', included: false, served: true }
-    ],
+    files: ['src/tests/**/*.test.js'],
     preprocessors: {
       'src/**/*.js': ['webpack']
     },

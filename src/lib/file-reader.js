@@ -1,7 +1,7 @@
 const newline = /(\r?\n)/
 
 class FileReaderWrapper {
-  constructor(file) {
+  constructor (file) {
     this._file = file
     this._offset = 0
     this._chunkSize = 1024 * 4 // 4KB

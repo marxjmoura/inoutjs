@@ -23,14 +23,25 @@ Load InOut.js with an ES6 import:
 import io from 'inoutjs'
 ```
 
-InOut.js read and write files by exposing the method `io()`.
+InOut.js read and write files by exposing the method `io()`:
 
 ```js
 document.getElementById('file').onchange = function (e) {
   var file = e.target.files[0];
-
-  io(file); // InOut.js file wrapper
+  var ioWrapper = io(file); // InOut.js file wrapper
 };
+```
+
+Creating an empty file:
+
+```js
+var ioWrapper = io();
+```
+
+Creating from blob:
+
+```js
+var ioWrapper = io(blob);
 ```
 
 ### File info
@@ -90,19 +101,31 @@ io(file).readLine(function (line, next) {
 `write()` write content to file
 
 ```js
-io({ fullName: 'foo.txt', type: 'text/plain' }).write('full content');
+var ioWrapper = io().write('content');
 ```
 
-`writeLine()` write line to file
+`writeLine()` write content to file and break line
 
 ```js
-io({ fullName: 'foo.txt', type: 'text/plain' }).writeLine('content');
+var ioWrapper = io()
+  .writeLine('content')
+  .writeLine(); // Just break line
 ```
+
+### Save file
 
 `save()` download the file
 
 ```js
-io({ fullName: 'foo.txt', type: 'text/plain' }).save();
+io(file).save();
+io(file).save('foo.xml'); // Override the file name
+io(file).save('foo.xml', 'application/xml'); // Override the file name and type
+```
+
+`toFile()` get JavaScript File
+
+```js
+var file = io().toFile()
 ```
 
 ### Utility functions

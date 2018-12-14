@@ -1,15 +1,21 @@
 import io from '@/inout'
+import startwars_txt from '@/tests/fakes/starwars.txt'
 
-describe('fullName()', () => {
-  let blob
+describe('name()', () => {
+  const blob = new Blob([], { type: 'text/plain' })
 
-  beforeAll(done => {
-    blob = new Blob([], { type: 'text/plain' })
-    done()
+  describe('when io() has no parameter', () => {
+    it('should return untitled', () => expect(io().name()).toEqual('untitled'))
   })
 
-  describe('when the parameter is not an instance of File', () => {
-    it('should return undefined', () => expect(io().name()).toBeUndefined())
+  describe('when io() parameter already is an InOut.js wrapper', () => {
+    const wrapper = io(startwars_txt)
+    it('should get wrapped file extension', () => expect(io(wrapper).name()).toEqual('starwars'))
+  })
+
+  describe('when io() parameter is a Blob', () => {
+    const blob = new Blob([], { type: 'text/plain' })
+    it('should return untitled', () => expect(io(blob).name()).toEqual('untitled'))
   })
 
   describe('when file has no extension', () => {
@@ -19,7 +25,7 @@ describe('fullName()', () => {
 
   describe('when is a dot file extension', () => {
     const file = new File([blob], '.dotfile')
-    it('should return an empty string', () => expect(io(file).name()).toBe(''))
+    it('should return an empty string', () => expect(io(file).name()).toEqual(''))
   })
 
   describe('when the file has a name and extension', () => {

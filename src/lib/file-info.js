@@ -1,7 +1,7 @@
 const fileExtension = /(?:\.([^.]+))?$/
 
 class FileInfoWrapper {
-  constructor(file) {
+  constructor (file) {
     this._file = file
   }
 

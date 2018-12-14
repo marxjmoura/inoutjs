@@ -114,7 +114,7 @@ const secondChunk = [
 ].join('\n')
 
 describe('readChunk()', () => {
-  describe('when the parameter is not an instance of File', () => {
+  describe('when io() has no parameter', () => {
     const callback = () => {
       throw 'Should not be called'
     }

@@ -2,8 +2,8 @@ import io from '@/inout'
 import file from '@/tests/fakes/starwars.txt'
 
 describe('lowerThan()', () => {
-  describe('when the parameter is not an instance of File', () => {
-    it('should return false', () => expect(io().lowerThan(2048)).toBe(false))
+  describe('when io() has no parameter', () => {
+    it('should return true', () => expect(io().lowerThan(2048)).toBe(true))
   })
 
   describe('when the parameter is not passed to the utility function', () => {

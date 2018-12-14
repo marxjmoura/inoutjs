@@ -1,87 +1,80 @@
+import FileFactory from './file-factory'
 import FileInfoWrapper from './file-info'
 import FileReaderWrapper from './file-reader'
+import FileSaveWrapper from './file-save'
 import FileSizeWrapper from './file-size'
+import FileWriterWrapper from './file-writer'
 
 class FileWrapper {
   constructor (file) {
-    this._file = file
-    this._info = new FileInfoWrapper(file)
-    this._reader = new FileReaderWrapper(file)
-    this._size = new FileSizeWrapper(file)
+    this._file = new FileFactory(file).create()
+    this._info = new FileInfoWrapper(this._file)
+    this._reader = new FileReaderWrapper(this._file)
+    this._save = new FileSaveWrapper(this._file)
+    this._size = new FileSizeWrapper(this._file)
+    this._writer = new FileWriterWrapper(this._file)
   }
 
   ext () {
-    if (this._isFileInstance()) {
-      return this._info.ext()
-    }
+    return this._info.ext()
   }
 
   fullName () {
-    if (this._isFileInstance()) {
-      return this._info.fullName()
-    }
+    return this._info.fullName()
   }
 
-  greaterThan (maxSize, unit) {
-    if (!this._isFileInstance()) return false
-    if (typeof maxSize !== 'number') return false
-
-    return this._size.greaterThan(maxSize, unit)
+  greaterThan (size, unit) {
+    return this._size.greaterThan(size, unit)
   }
 
-  greaterOrEqual (maxSize, unit) {
-    if (!this._isFileInstance()) return false
-    if (typeof maxSize !== 'number') return false
-
-    return this._size.greaterOrEqual(maxSize, unit)
+  greaterOrEqual (size, unit) {
+    return this._size.greaterOrEqual(size, unit)
   }
 
-  lowerThan (maxSize, unit) {
-    if (!this._isFileInstance()) return false
-    if (typeof maxSize !== 'number') return false
-
-    return this._size.lowerThan(maxSize, unit)
+  lowerThan (size, unit) {
+    return this._size.lowerThan(size, unit)
   }
 
-  lowerOrEqual (maxSize, unit) {
-    if (!this._isFileInstance()) return false
-    if (typeof maxSize !== 'number') return false
-
-    return this._size.lowerOrEqual(maxSize, unit)
+  lowerOrEqual (size, unit) {
+    return this._size.lowerOrEqual(size, unit)
   }
 
   name () {
-    if (this._isFileInstance()) {
-      return this._info.name()
-    }
+    return this._info.name()
   }
 
   readChunk (callback) {
-    if (this._isFileInstance()) {
-      this._reader.readChunk(callback)
-    }
+    this._reader.readChunk(callback)
   }
 
   readLine (callback) {
-    if (this._isFileInstance()) {
-      this._reader.readLine(callback)
-    }
+    this._reader.readLine(callback)
+  }
+
+  save (name, type) {
+    this._save.save(name, type)
   }
 
   size (unit) {
-    if (this._isFileInstance()) {
-      return this._size.calculate(unit)
-    }
+    return this._size.calculate(unit)
+  }
+
+  toFile () {
+    return this._file
   }
 
   type () {
-    if (this._isFileInstance()) {
-      return this._info.type()
-    }
+    return this._info.type()
   }
 
-  _isFileInstance () {
-    return this._file instanceof File
+  write (content) {
+    const file = this._writer.write(content)
+    return io(file)
+  }
+
+  writeLine (content) {
+    const file = this._writer.writeLine(content)
+    return io(file)
   }
 }
 
