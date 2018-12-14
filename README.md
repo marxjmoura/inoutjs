@@ -101,19 +101,15 @@ io(file).readLine(function (line, next) {
 `write()` write content to file
 
 ```js
-io().write('full content');
+var ioWrapper = io().write('content');
 ```
 
-`write()` write multiline to file
+`writeLine()` write content to file and break line
 
 ```js
-io().write(['line1', 'line2']);
-```
-
-`writeLine()` write line to file
-
-```js
-io().writeLine('content');
+var ioWrapper = io()
+  .writeLine('content')
+  .writeLine(); // Just break line
 ```
 
 ### Save file

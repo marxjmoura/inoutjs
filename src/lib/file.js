@@ -3,6 +3,7 @@ import FileInfoWrapper from './file-info'
 import FileReaderWrapper from './file-reader'
 import FileSaveWrapper from './file-save'
 import FileSizeWrapper from './file-size'
+import FileWriterWrapper from './file-writer'
 
 class FileWrapper {
   constructor (file) {
@@ -11,6 +12,7 @@ class FileWrapper {
     this._reader = new FileReaderWrapper(this._file)
     this._save = new FileSaveWrapper(this._file)
     this._size = new FileSizeWrapper(this._file)
+    this._writer = new FileWriterWrapper(this._file)
   }
 
   ext () {
@@ -63,6 +65,16 @@ class FileWrapper {
 
   type () {
     return this._info.type()
+  }
+
+  write (content) {
+    const file = this._writer.write(content)
+    return io(file)
+  }
+
+  writeLine (content) {
+    const file = this._writer.writeLine(content)
+    return io(file)
   }
 }
 
