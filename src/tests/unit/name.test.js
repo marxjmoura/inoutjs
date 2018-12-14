@@ -2,12 +2,7 @@ import io from '@/inout'
 import startwars_txt from '@/tests/fakes/starwars.txt'
 
 describe('name()', () => {
-  let blob
-
-  beforeAll(done => {
-    blob = new Blob([], { type: 'text/plain' })
-    done()
-  })
+  const blob = new Blob([], { type: 'text/plain' })
 
   describe('when io() has no parameter', () => {
     it('should return untitled', () => expect(io().name()).toEqual('untitled'))
