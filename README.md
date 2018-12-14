@@ -28,29 +28,20 @@ InOut.js read and write files by exposing the method `io()`:
 ```js
 document.getElementById('file').onchange = function (e) {
   var file = e.target.files[0];
-  var fileWrapper = io(file); // InOut.js file wrapper
+  var ioWrapper = io(file); // InOut.js file wrapper
 };
 ```
 
 Creating an empty file:
 
 ```js
-var fileWrapper = io();
+var ioWrapper = io();
 ```
 
 Creating from blob:
 
 ```js
-var blob = new Blob(['content'], { type: 'text/plain' });
-var fileWrapper = io(blob);
-```
-
-Creating a file manually:
-
-```js
-var blob = new Blob(['content'], { type: 'text/plain' });
-var file = new File([blob], 'foo.txt', { type: blob.type, lastModified: new Date() })
-var fileWrapper = io(file);
+var ioWrapper = io(blob);
 ```
 
 ### File info
@@ -133,6 +124,12 @@ io().writeLine('content');
 io(file).save();
 io(file).save('foo.xml'); // Override the file name
 io(file).save('foo.xml', 'application/xml'); // Override the file name and type
+```
+
+`toFile()` get JavaScript File
+
+```js
+var file = io().toFile()
 ```
 
 ### Utility functions

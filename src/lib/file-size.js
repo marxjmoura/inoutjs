@@ -2,7 +2,7 @@ const sizeUnit = /B|KB|MB|GB/i
 const exponentOf = { B: 0, KB: 1, MB: 2, GB: 3 }
 
 class FileSizeWrapper {
-  constructor(file) {
+  constructor (file) {
     this._file = file
   }
 
@@ -12,28 +12,20 @@ class FileSizeWrapper {
     return Number(this._file.size) / Math.pow(1024, exponentOf[unit])
   }
 
-  greaterThan (maxSize, unit) {
-    const fileSize = this.calculate(unit)
-
-    return fileSize > maxSize
+  greaterThan (size, unit) {
+    return this.calculate(unit) > Number(size)
   }
 
-  greaterOrEqual (maxSize, unit) {
-    const fileSize = this.calculate(unit)
-
-    return fileSize >= maxSize
+  greaterOrEqual (size, unit) {
+    return this.calculate(unit) >= Number(size)
   }
 
-  lowerThan (minSize, unit) {
-    const fileSize = this.calculate(unit)
-
-    return fileSize < minSize
+  lowerThan (size, unit) {
+    return this.calculate(unit) < Number(size)
   }
 
-  lowerOrEqual (minSize, unit) {
-    const fileSize = this.calculate(unit)
-
-    return fileSize <= minSize
+  lowerOrEqual (size, unit) {
+    return this.calculate(unit) <= Number(size)
   }
 }
 

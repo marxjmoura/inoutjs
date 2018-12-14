@@ -1,4 +1,5 @@
 import io from '@/inout'
+import startwars_txt from '@/tests/fakes/starwars.txt'
 
 describe('fullName()', () => {
   let blob
@@ -8,8 +9,18 @@ describe('fullName()', () => {
     done()
   })
 
-  describe('when the parameter is not an instance of File', () => {
-    it('should return undefined', () => expect(io().fullName()).toBeUndefined())
+  describe('when io() has no parameter', () => {
+    it('should return untitled.txt', () => expect(io().fullName()).toEqual('untitled.txt'))
+  })
+
+  describe('when io() parameter already is an InOut.js wrapper', () => {
+    const wrapper = io(startwars_txt)
+    it('should get wrapped file extension', () => expect(io(wrapper).fullName()).toEqual('starwars.txt'))
+  })
+
+  describe('when io() parameter is a Blob', () => {
+    const blob = new Blob([], { type: 'text/plain' })
+    it('should return untitled', () => expect(io(blob).fullName()).toEqual('untitled'))
   })
 
   describe('when file has no extension', () => {

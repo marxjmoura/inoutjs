@@ -2,7 +2,7 @@ import io from '@/inout'
 import file from '@/tests/fakes/starwars.txt'
 
 describe('greaterThan()', () => {
-  describe('when the parameter is not an instance of File', () => {
+  describe('when io() has no parameter', () => {
     it('should return false', () => expect(io().greaterThan(2048)).toBe(false))
   })
 
