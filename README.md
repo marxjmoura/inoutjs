@@ -82,7 +82,7 @@ var size  = io(file).size('MB'); // Options: B, KB, MB, GB
 
 ```js
 io(file).readChunk(function (chunk, next) {
-  console.log(chunk);
+  console.log(chunk === undefined ? 'EOF' : chunk);
   next(); // Read next chunk
 });
 ```
@@ -153,3 +153,7 @@ io(file).lowerThan(100, 'KB'); // Options: B, KB, MB, GB
 ```js
 io(file).lowerOrEqual(100, 'KB'); // Options: B, KB, MB, GB
 ```
+
+## Contact us
+
+If you have any questions, detect a bug or need a new feature, please, fell free to [open a new issue](https://github.com/logiqsystem/inoutjs/issues/new) on GitHub.
