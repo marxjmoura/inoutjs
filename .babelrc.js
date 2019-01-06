@@ -1,11 +1,11 @@
 var config = {
-  presets: ["@babel/preset-env"]
+  presets: ['@babel/preset-env']
 };
 
 if (process.env.NODE_ENV.match(/test/)) {
   config.plugins = [
-    ["istanbul", {
-      "exclude": ["src/!(lib)/**/*.js"]
+    ['istanbul', {
+      'exclude': ['src/!(lib)/**/*.js']
     }]
   ];
 }
