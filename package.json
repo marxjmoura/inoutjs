@@ -1,10 +1,16 @@
 {
   "name": "inoutjs",
   "title": "InOut.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/logiqsystem/inoutjs",
   "author": "Marx JMoura",
   "license": "MIT",
+  "main": "dist/inout",
+  "keywords": [
+    "javascript-library",
+    "read-write-file",
+    "input-output"
+  ],
   "bugs": {
     "url": "https://github.com/logiqsystem/inoutjs/issues"
   },
@@ -13,7 +19,7 @@
     "url": "git://github.com/logiqsystem/inoutjs.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config .webpack.config.js --output=./dist/inout.min.js",
+    "build": "cross-env NODE_ENV=production webpack --config .webpack.config.js",
     "test": "cross-env NODE_ENV=test karma start .karma.config.js"
   },
   "dependencies": {},

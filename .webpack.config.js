@@ -5,8 +5,10 @@ const header = `InOut.js v0.1.1 (https://github.com/logiqsystem/inoutjs)
 Copyright 2018 LogiQ System (https://logiqsystem.com)
 Licensed under MIT (https://github.com/logiqsystem/inoutjs/blob/master/LICENSE)`;
 
-module.exports = {
-  mode: process.env.NODE_ENV.match(/production/) ? 'production' : 'development',
+const isProduction = process.env.NODE_ENV.match(/production/);
+
+const config = {
+  mode: isProduction ? 'production' : 'development',
   entry: path.resolve(__dirname, './src/inout.js'),
   resolve: {
     alias: {
@@ -26,3 +28,16 @@ module.exports = {
     new webpack.BannerPlugin(header)
   ]
 };
+
+if (isProduction) {
+  config.output = {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'inout.js',
+    libraryTarget: 'umd',
+    library: 'inoutjs',
+    umdNamedDefine: true,
+    globalObject: `(typeof self !== 'undefined' ? self : this)`
+  };
+}
+
+module.exports = config;
