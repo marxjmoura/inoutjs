@@ -1,9 +1,9 @@
 ## [v0.1.2](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.2) (2019-01-14)
-### Info:
+### Notes:
 - UMD bundle
 
 ## [v0.1.1](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.1) (2019-01-06)
-### Info:
+### Notes:
 - Update project URLs
 
 ## [v0.1.0](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.0) (2018-12-14)
