@@ -1,4 +1,4 @@
-## [v0.1.2](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.2) (UNRELEASED)
+## [v0.1.2](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.2) (2019-01-14)
 ### Info:
 - UMD bundle
 
