@@ -6,6 +6,11 @@
   "author": "Marx JMoura",
   "license": "MIT",
   "main": "dist/inout",
+  "keywords": [
+    "javascript-library",
+    "read-write-file",
+    "input-output"
+  ],
   "bugs": {
     "url": "https://github.com/logiqsystem/inoutjs/issues"
   },
