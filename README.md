@@ -5,7 +5,7 @@
 [![NPM version](https://img.shields.io/npm/v/inoutjs.svg)](https://npmjs.org/package/inoutjs)
 [![NPM downloads](https://img.shields.io/npm/dm/inoutjs.svg)](https://npmjs.org/package/inoutjs)
 [![devDependency Status](https://img.shields.io/david/dev/logiqsystem/inoutjs.svg)](https://david-dm.org/logiqsystem/inoutjs?type=dev)
-[![JS gzip size](https://img.badgesize.io/logiqsystem/inoutjs/master/dist/inout.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/logiqsystem/inoutjs/blob/master/dist/inout.min.js)
+[![JS gzip size](https://img.badgesize.io/logiqsystem/inoutjs/master/dist/inout.js?compression=gzip&label=JS+gzip+size)](https://github.com/logiqsystem/inoutjs/blob/master/dist/inout.js)
 
 ## Getting started
 
