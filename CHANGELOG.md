@@ -1,3 +1,7 @@
+## [v0.1.3](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.3) (2019-01-21)
+### Notes:
+- Fix badge for gzip size in README
+
 ## [v0.1.2](https://github.com/logiqsystem/inoutjs/releases/tag/v0.1.2) (2019-01-14)
 ### Notes:
 - UMD bundle
