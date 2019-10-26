@@ -1,3 +1,8 @@
+## [v0.1.4](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.4) (2019-10-26)
+### Notes:
+- Update dependencies
+- Update copyright
+
 ## [v0.1.3](https://github.com/marxjmoura/inoutjs/releases/tag/v0.1.3) (2019-01-21)
 ### Notes:
 - Fix badge for gzip size in README
