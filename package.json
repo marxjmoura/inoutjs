@@ -2,7 +2,7 @@
   "name": "inoutjs",
   "title": "InOut.js",
   "version": "0.1.3",
-  "homepage": "https://github.com/logiqsystem/inoutjs",
+  "homepage": "https://github.com/marxjmoura/inoutjs",
   "author": "Marx JMoura",
   "license": "MIT",
   "main": "dist/inout",
@@ -12,11 +12,11 @@
     "input-output"
   ],
   "bugs": {
-    "url": "https://github.com/logiqsystem/inoutjs/issues"
+    "url": "https://github.com/marxjmoura/inoutjs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/logiqsystem/inoutjs.git"
+    "url": "git://github.com/marxjmoura/inoutjs.git"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config .webpack.config.js",

@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const header = `InOut.js v0.1.1 (https://github.com/logiqsystem/inoutjs)
-Copyright 2018 LogiQ System (https://logiqsystem.com)
-Licensed under MIT (https://github.com/logiqsystem/inoutjs/blob/master/LICENSE)`;
+const header = `InOut.js v0.1.3 (https://github.com/marxjmoura/inoutjs)
+Copyright (c) 2018-present Marx J. Moura (https://github.com/marxjmoura)
+Licensed under MIT (https://github.com/marxjmoura/inoutjs/blob/master/LICENSE)`;
 
 const isProduction = process.env.NODE_ENV.match(/production/);
 
