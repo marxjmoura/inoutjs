@@ -1,11 +1,11 @@
 # InOut.js - I/O JavaScript library
 
-[![CircleCI](https://circleci.com/gh/logiqsystem/inoutjs.svg?style=shield)](https://circleci.com/gh/logiqsystem/inoutjs)
-[![codecov](https://codecov.io/gh/logiqsystem/inoutjs/branch/master/graph/badge.svg)](https://codecov.io/gh/logiqsystem/inoutjs)
+[![CircleCI](https://circleci.com/gh/marxjmoura/inoutjs.svg?style=shield)](https://circleci.com/gh/marxjmoura/inoutjs)
+[![codecov](https://codecov.io/gh/marxjmoura/inoutjs/branch/master/graph/badge.svg)](https://codecov.io/gh/marxjmoura/inoutjs)
 [![NPM version](https://img.shields.io/npm/v/inoutjs.svg)](https://npmjs.org/package/inoutjs)
 [![NPM downloads](https://img.shields.io/npm/dm/inoutjs.svg)](https://npmjs.org/package/inoutjs)
-[![devDependency Status](https://img.shields.io/david/dev/logiqsystem/inoutjs.svg)](https://david-dm.org/logiqsystem/inoutjs?type=dev)
-[![JS gzip size](https://img.badgesize.io/logiqsystem/inoutjs/master/dist/inout.js?compression=gzip&label=JS+gzip+size)](https://github.com/logiqsystem/inoutjs/blob/master/dist/inout.js)
+[![devDependency Status](https://img.shields.io/david/dev/marxjmoura/inoutjs.svg)](https://david-dm.org/marxjmoura/inoutjs?type=dev)
+[![JS gzip size](https://img.badgesize.io/marxjmoura/inoutjs/master/dist/inout.js?compression=gzip&label=JS+gzip+size)](https://github.com/marxjmoura/inoutjs/blob/master/dist/inout.js)
 
 ## Getting started
 
@@ -13,7 +13,7 @@
 $ npm install inoutjs
 ```
 
-[or download the latest release](https://github.com/logiqsystem/inoutjs/releases/)
+[or download the latest release](https://github.com/marxjmoura/inoutjs/releases/)
 
 ## Usage
 
@@ -154,6 +154,12 @@ io(file).lowerThan(100, 'KB'); // Options: B, KB, MB, GB
 io(file).lowerOrEqual(100, 'KB'); // Options: B, KB, MB, GB
 ```
 
-## Contact us
+## Bugs and features
 
-If you have any questions, detect a bug or need a new feature, please, fell free to [open a new issue](https://github.com/logiqsystem/inoutjs/issues/new) on GitHub.
+Please, fell free to [open a new issue](https://github.com/marxjmoura/inoutjs/issues/new) on GitHub.
+
+## License
+
+[MIT](https://github.com/marxjmoura/inoutjs/blob/master/LICENSE)
+
+Copyright (c) 2018-present, [Marx J. Moura](https://github.com/marxjmoura)
